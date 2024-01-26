@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_layouts_footers",
+  "info": {
+    "displayName": "Footer",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.link",
+      "required": true
+    },
+    "legalLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.link",
+      "required": true
+    }
+  }
+}

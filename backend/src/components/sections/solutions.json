@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_sections_solutions",
+  "info": {
+    "displayName": "Solution",
+    "icon": "handHeart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80,
+      "minLength": 4
+    },
+    "description": {
+      "type": "text",
+      "minLength": 50,
+      "maxLength": 250,
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "account",
+        "additional",
+        "bnpl",
+        "cardIssuing",
+        "openBanking",
+        "payment",
+        "pos"
+      ],
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

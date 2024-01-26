@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_layouts_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "layout",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 60,
+      "minLength": 4
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 200,
+      "minLength": 4
+    },
+    "buttonLink": {
+      "displayName": "Button Links",
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-links",
+      "required": true
+    }
+  }
+}

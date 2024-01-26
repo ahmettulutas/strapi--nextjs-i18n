@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_service",
+  "info": {
+    "displayName": "Service",
+    "icon": "key"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100,
+      "minLength": 4
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 250,
+      "minLength": 4,
+      "required": true
+    },
+    "serviceLogo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_meta_metas",
+  "info": {
+    "displayName": "Meta",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string",
+      "required": true
+    },
+    "metaDescription": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

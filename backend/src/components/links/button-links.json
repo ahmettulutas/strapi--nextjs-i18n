@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_links_button_links",
+  "info": {
+    "displayName": "Button Links",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "newTab": {
+      "type": "boolean",
+      "required": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link"
+      ]
+    },
+    "text": {
+      "type": "string",
+      "maxLength": 40,
+      "required": true
+    }
+  }
+}

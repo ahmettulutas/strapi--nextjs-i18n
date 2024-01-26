@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_layouts_navbars",
+  "info": {
+    "displayName": "Navbar",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "navLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.link",
+      "required": true
+    },
+    "navButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-links",
+      "required": false
+    },
+    "navLogo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "logoText": {
+      "type": "string",
+      "maxLength": 30
+    }
+  }
+}
