@@ -2,9 +2,9 @@ import React from "react";
 
 import Image from "next/image";
 import heroBg from "@/app/[lang]/assets/hero-background.svg";
-import { PaleText } from "@/components/shared/PaleText";
-import { BrandButton } from "@/components/shared/brand-button";
-import { ButtonLinkProps } from "../utils/model";
+import { PaleText } from "@/app/[lang]/components/shared/PaleText";
+import { BrandButton } from "@/app/[lang]/components/shared/brand-button";
+import { ButtonLinkProps } from "../../utils/model";
 import Link from "next/link";
 
 type HeroProps = {

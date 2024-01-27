@@ -3,7 +3,7 @@ import { Manrope } from "next/font/google";
 import { LocaleType, availableLocales } from "@/i18n/settings";
 import "./globals.css";
 import { getGlobal } from "./utils/strapi-api-fns";
-import { Navbar } from "./layouts/Navbar";
+import { Navbar } from "./components/layouts/Navbar";
 
 const manrope = Manrope({
   subsets: ["latin"],

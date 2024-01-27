@@ -64,7 +64,30 @@ export async function getBlogPageById(lang: string, slug: string) {
     populate: {
       coverImage: { populate: "*" },
       category: { fields: ["name", "slug"] },
-      author: { populate: "*" },
+      author: {
+        fields: ["name"],
+        populate: { avatar: { fields: ["url", "width", "height"] } },
+      },
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  return await strapiFetchApi(path, urlParamsObject, options);
+}
+
+export async function getAllBlogsByCategory(lang: string, category: string) {
+  const path = `/blogposts`;
+  const urlParamsObject = {
+    locale: lang,
+    populate: {
+      coverImage: { fields: "*" },
+      author: {
+        fields: ["name"],
+        populate: { avatar: { fields: ["url", "width", "height"] } },
+      },
+      category: { fields: ["name", "slug"] },
+    },
+    filters: {
+      category: { slug: category },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };

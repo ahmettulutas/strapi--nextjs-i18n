@@ -1,4 +1,4 @@
-import { Hero } from "../layouts/Hero";
+import { Hero } from "../components/layouts/Hero";
 
 export const pageRenderer = (section: any, index: number) => {
   switch (section.__component) {

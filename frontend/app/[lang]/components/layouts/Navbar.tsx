@@ -3,8 +3,8 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-import { Data, StrapiLinkProps } from "../utils/model";
-import { getStrapiMedia } from "../utils/api-helpers";
+import { Picture, StrapiLinkProps } from "../../utils/model";
+import { getStrapiMedia } from "../../utils/api-helpers";
 import { useCallback, useState } from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { NavbarToggle } from "./NavbarToggle";
@@ -12,7 +12,7 @@ import { NavbarToggle } from "./NavbarToggle";
 type NavbarProps = {
   navbarData: {
     navLinks: Array<StrapiLinkProps>;
-    navLogo: { data: Data };
+    navLogo: Picture;
   };
 };
 
