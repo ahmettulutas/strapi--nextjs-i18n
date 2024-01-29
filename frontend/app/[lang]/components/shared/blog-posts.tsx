@@ -15,9 +15,8 @@ import {
   CardContent,
   CardFooter,
   Card,
-} from "../ui/card";
+} from "../../../components/ui/card";
 import { Author } from "./author";
-import { BrandButton } from "./brand-button";
 import { Badge } from "@/app/components/ui/badge";
 
 export const BlogPosts = ({ data, lang }: BlogPostProps) => {
@@ -27,7 +26,7 @@ export const BlogPosts = ({ data, lang }: BlogPostProps) => {
         const category = item.attributes?.category?.data?.attributes;
         return (
           <Link
-            href={`/${lang}/blog-posts/${category?.slug}/${item.attributes.slug}`}
+            href={`/${lang}/posts/${item.attributes.slug}`}
             key={item.id}
             className="mx-auto group hover:no-underline focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[375px] rounded-2xl overflow-hidden shadow-lg"
           >
@@ -50,7 +49,8 @@ export const BlogPosts = ({ data, lang }: BlogPostProps) => {
                 </div>
               </CardHeader>
               <CardContent>
-                <Badge>{category.name}</Badge>
+                <Badge>{category.name}</Badge>{" "}
+                {/* // TODO  Add navigation to category page here */}
                 <CardTitle className=" leading-normal">
                   {item.attributes.title}
                 </CardTitle>

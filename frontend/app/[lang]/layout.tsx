@@ -1,9 +1,7 @@
+import "./globals.css";
 import { dir } from "i18next";
 import { Manrope } from "next/font/google";
 import { LocaleType, availableLocales } from "@/i18n/settings";
-import "./globals.css";
-import { getGlobal } from "./utils/strapi-api-fns";
-import { Navbar } from "./components/layouts/Navbar";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -24,7 +22,6 @@ export default async function Layout({
   children,
   params: { lang },
 }: LocaleRouteLayout) {
-  const globalData = await getGlobal(lang);
   return (
     <html
       lang={lang}
@@ -35,20 +32,11 @@ export default async function Layout({
       <body
         className={`${manrope.className} dark:bg-dark-bg dark:text-dark-text text-light-text transition-all duration-150 ease-in`}
       >
-        <Navbar navbarData={globalData.data.attributes.navbar} />
-
         {children}
       </body>
     </html>
   );
 }
-
-/* export async function generateMetadata(
-  { params }: SharedPageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  return getDefaultMetaData(params.lang, parent);
-} */
 
 export async function generateStaticParams() {
   // generates default paths for each locale domain/locale1, domain/locale2, etc.

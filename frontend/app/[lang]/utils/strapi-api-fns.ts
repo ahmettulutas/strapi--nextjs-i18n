@@ -1,3 +1,4 @@
+import { LocaleType } from "@/i18n/settings";
 import { strapiFetchApi } from "./fetch-api";
 import type { PageData } from "./model";
 
@@ -9,8 +10,8 @@ export async function getPageBySlug(
 ): Promise<{ data: Array<PageData> }> {
   const path = `/pages`;
   const urlParamsObject = {
-    filters: { slug },
     locale: lang,
+    filters: { slug },
     populate: {
       contentSection: {
         populate: "*",
@@ -21,34 +22,31 @@ export async function getPageBySlug(
   return await strapiFetchApi(path, urlParamsObject, options);
 }
 
-export async function getGlobal(lang: string) {
+export async function getGlobal(lang: LocaleType) {
   const path = `/global`;
   const urlParamsObject = {
     locale: lang,
     populate: {
-      footer: {
-        populate: "*",
-      },
-      meta: {
-        populate: "*",
-      },
-      navbar: {
-        populate: "*",
-      },
+      footer: { populate: "*" },
+      meta: { populate: "*" },
+      navbar: { populate: "*" },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   return await strapiFetchApi(path, urlParamsObject, options);
 }
 
-export async function getAllBlogs(lang: string) {
+export async function getAllBlogs(lang: LocaleType) {
   const path = `/blogposts`;
   const urlParamsObject = {
     locale: lang,
     populate: {
       coverImage: { populate: "*" },
       category: { fields: ["name", "slug"] },
-      author: { populate: "*" },
+      author: {
+        fields: ["name"],
+        populate: { avatar: { fields: ["url", "width", "height"] } },
+      },
       related: { populate: "*" },
     },
   };
@@ -56,7 +54,7 @@ export async function getAllBlogs(lang: string) {
   return await strapiFetchApi(path, urlParamsObject, options);
 }
 
-export async function getBlogPageById(lang: string, slug: string) {
+export async function getBlogPageById(lang: LocaleType, slug: string) {
   const path = `/blogposts`;
   const urlParamsObject = {
     locale: lang,
@@ -68,13 +66,34 @@ export async function getBlogPageById(lang: string, slug: string) {
         fields: ["name"],
         populate: { avatar: { fields: ["url", "width", "height"] } },
       },
+      localizations: { fields: ["slug", "locale"] },
     },
   };
   const options = { headers: { Authorization: `Bearer ${token}` } };
   return await strapiFetchApi(path, urlParamsObject, options);
 }
 
-export async function getAllBlogsByCategory(lang: string, category: string) {
+export async function getAvailableSlugsForBlogs(
+  lang: LocaleType,
+  slug: string
+) {
+  const path = `/blogposts`;
+  const urlParamsObject = {
+    locale: lang,
+    filters: { slug },
+    populate: {
+      fields: [],
+      localizations: { fields: ["slug", "locale"] },
+    },
+  };
+  const options = { headers: { Authorization: `Bearer ${token}` } };
+  return await strapiFetchApi(path, urlParamsObject, options);
+}
+
+export async function getAllBlogsByCategory(
+  lang: LocaleType,
+  category: string
+) {
   const path = `/blogposts`;
   const urlParamsObject = {
     locale: lang,

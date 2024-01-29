@@ -1,4 +1,4 @@
-import { ButtonProps } from "@/app/[lang]/components/ui/button";
+import { ButtonProps } from "@/app/components/ui/button";
 
 type StrapiResponse<T> = {
   data: T;
@@ -149,3 +149,10 @@ export interface Blog {
     category: Category;
   };
 }
+export type DynamicSlug = {
+  id: number;
+  attributes: {
+    slug: string;
+    locale: string;
+  };
+};

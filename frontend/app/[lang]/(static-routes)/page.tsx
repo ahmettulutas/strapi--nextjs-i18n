@@ -1,7 +1,8 @@
-import { getPageBySlug } from "./utils/strapi-api-fns";
+import { getPageBySlug } from "../utils/strapi-api-fns";
 import { LocaleType } from "@/i18n/settings";
 import { SharedPageProps } from "./layout";
-import { pageRenderer } from "./utils/page-renderer";
+import { pageRenderer } from "../utils/page-renderer";
+import { notFound } from "next/navigation";
 
 async function getHomePage(lang: LocaleType) {
   try {
@@ -13,8 +14,9 @@ async function getHomePage(lang: LocaleType) {
 }
 
 export default async function HomePage({ params }: SharedPageProps) {
-  const pageData = await getHomePage(params.lang);
-  return pageData.data[0].attributes.contentSection.map((section: any) =>
+  const page = await getHomePage(params.lang);
+  if (!page.data.length) return notFound();
+  return page.data[0].attributes.contentSection.map((section: any) =>
     pageRenderer(section, section.id)
   );
 }

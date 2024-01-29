@@ -3,34 +3,38 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-import { Picture, StrapiLinkProps } from "../../utils/model";
+import { DynamicSlug, Picture, StrapiLinkProps } from "../../utils/model";
 import { getStrapiMedia } from "../../utils/api-helpers";
 import { useCallback, useState } from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { NavbarToggle } from "./NavbarToggle";
+import { LanguageSelector } from "../shared/language-selector";
+import { LocaleType } from "@/i18n/settings";
 
 type NavbarProps = {
   navbarData: {
     navLinks: Array<StrapiLinkProps>;
     navLogo: Picture;
   };
+  lang: LocaleType;
+  dynamicSlugs?: Array<DynamicSlug>;
 };
 
-export function Navbar({ navbarData }: NavbarProps) {
+export function Navbar({ navbarData, dynamicSlugs, lang }: NavbarProps) {
   const [open, setOpen] = useState(false);
-  const activeSegment = useSelectedLayoutSegment();
+  const activeSegment = useSelectedLayoutSegment(); // TODO - use this to style active link.
   const getLinks = useCallback(() => {
     return navbarData.navLinks.map((link) => (
       <Link
         key={link.id}
-        href={link.url}
+        href={`/${lang}${link.url}`}
         className="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium active"
         aria-current="page"
       >
         {link.text}
       </Link>
     ));
-  }, [navbarData.navLinks]);
+  }, [navbarData.navLinks, lang]);
 
   return (
     <nav className="bg-[#14062C]">
@@ -55,6 +59,7 @@ export function Navbar({ navbarData }: NavbarProps) {
             <div className="hidden sm:block ml-auto">
               <div className="flex space-x-4">{getLinks()}</div>
             </div>
+            <LanguageSelector dynamicSlugs={dynamicSlugs} />
           </div>
         </div>
       </div>

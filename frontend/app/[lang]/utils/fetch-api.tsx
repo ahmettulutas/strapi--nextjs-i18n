@@ -8,7 +8,6 @@ export async function strapiFetchApi(
   options = {}
 ) {
   try {
-    // Merge default and user options
     const mergedOptions = {
       next: { revalidate: 60 },
       headers: {

@@ -1,6 +1,6 @@
-import { BlogPosts } from "../../components/shared/blog-posts";
+import { BlogPosts } from "../../../components/shared/blog-posts";
 import { SharedPageProps } from "../../layout";
-import { getAllBlogsByCategory } from "../../utils/strapi-api-fns";
+import { getAllBlogsByCategory } from "../../../utils/strapi-api-fns";
 
 type CategoriesProps = {
   params: SharedPageProps["params"] & { slug: string; category: string };
