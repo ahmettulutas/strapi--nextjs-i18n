@@ -9,7 +9,7 @@ import { useCallback, useState } from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { NavbarToggle } from "./NavbarToggle";
 import { LanguageSelector } from "../shared/language-selector";
-import { LocaleType } from "@/i18n/settings";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 
 type NavbarProps = {
   navbarData: {

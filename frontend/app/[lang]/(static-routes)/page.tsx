@@ -1,5 +1,5 @@
 import { getPageBySlug } from "../utils/strapi-api-fns";
-import { LocaleType } from "@/i18n/settings";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 import { SharedPageProps } from "./layout";
 import { pageRenderer } from "../utils/page-renderer";
 import { notFound } from "next/navigation";

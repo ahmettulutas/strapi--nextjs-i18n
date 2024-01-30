@@ -1,7 +1,7 @@
 import "./globals.css";
 import { dir } from "i18next";
 import { Manrope } from "next/font/google";
-import { LocaleType, availableLocales } from "@/i18n/settings";
+import { LocaleType, availableLocales } from "@/app/[lang]/i18n/settings";
 
 const manrope = Manrope({
   subsets: ["latin"],

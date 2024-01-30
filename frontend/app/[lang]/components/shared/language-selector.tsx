@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { LocaleType, availableLocales } from "@/i18n/settings";
+import { LocaleType, availableLocales } from "@/app/[lang]/i18n/settings";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { omitLocaleFromPath } from "../../utils/route-helpers";
 import { DynamicSlug } from "../../utils/model";
@@ -11,7 +11,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/app/components/ui/select";
+} from "@/app/[lang]/components/ui/select";
+import { useTranslation } from "@/app/[lang]/i18n/client";
 
 export const LanguageSelector = ({
   dynamicSlugs,
@@ -20,12 +21,15 @@ export const LanguageSelector = ({
 }) => {
   const pathname = usePathname();
   const router = useRouter();
-  const locale = useParams()?.locale as LocaleType;
-  const defaultLocaleRoutes = availableLocales.map((lang) => (
-    <SelectItem key={lang} value={lang}>
-      {lang}
+  const locale = useParams()?.lang as LocaleType;
+  const { t } = useTranslation(locale, "translation");
+
+  const defaultLocaleRoutes = availableLocales.map((locale) => (
+    <SelectItem key={locale} value={locale}>
+      {locale}
     </SelectItem>
   ));
+
   const dynamicLocaleRoutes = dynamicSlugs?.map(({ attributes }) => {
     if (!attributes.locale) return;
     return (
@@ -42,23 +46,25 @@ export const LanguageSelector = ({
     if (!dynamicSlug) return router.push(`/${locale}`);
     return router.push(`/${locale}/posts/${dynamicSlug}`);
   };
+  console.log(locale);
   return (
     <Select
       aria-label="select-language"
-      defaultValue={locale}
-      value={locale}
+      defaultValue={locale === "" ? "en" : locale}
+      value={locale === undefined ? "en" : locale}
       onValueChange={(value) => {
-        console.log(`/${value}/${omitLocaleFromPath(pathname)}`);
         dynamicLocaleRoutes
           ? handleDynamicNavigation(value)
           : router.push(`/${value}/${omitLocaleFromPath(pathname)}`);
       }}
     >
-      <SelectTrigger className="w-auto bg-transparent text-white">
-        <SelectValue placeholder={"language"} />
+      <SelectTrigger className="w-auto bg-[#14062C] text-white">
+        <SelectValue placeholder="Language" />
       </SelectTrigger>
-      <SelectContent className="bg-transparent text-white w-full">
-        <SelectGroup>{dynamicLocaleRoutes ?? defaultLocaleRoutes}</SelectGroup>
+      <SelectContent className="bg-[#14062C] text-white w-full">
+        <SelectGroup>
+          {dynamicSlugs ? defaultLocaleRoutes : defaultLocaleRoutes}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );

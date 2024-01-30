@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Blog } from "../../utils/model";
 import { formatDate, getStrapiMedia } from "../../utils/api-helpers";
-import { LocaleType } from "@/i18n/settings";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 import Link from "next/link";
 
 type BlogPostProps = {
@@ -15,9 +15,9 @@ import {
   CardContent,
   CardFooter,
   Card,
-} from "../../../components/ui/card";
+} from "../ui/card";
 import { Author } from "./author";
-import { Badge } from "@/app/components/ui/badge";
+import { Badge } from "@/app/[lang]/components/ui/badge";
 
 export const BlogPosts = ({ data, lang }: BlogPostProps) => {
   return (
@@ -51,7 +51,7 @@ export const BlogPosts = ({ data, lang }: BlogPostProps) => {
               <CardContent>
                 <Badge>{category.name}</Badge>{" "}
                 {/* // TODO  Add navigation to category page here */}
-                <CardTitle className=" leading-normal">
+                <CardTitle className=" leading-normal group-hover:underline">
                   {item.attributes.title}
                 </CardTitle>
                 <CardDescription>

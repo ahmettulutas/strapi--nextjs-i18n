@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@/app/components/ui/button";
+import { Button, ButtonProps } from "@/app/[lang]/components/ui/button";
 import React from "react";
 
 const GhostBtn = (props: ButtonProps) => {

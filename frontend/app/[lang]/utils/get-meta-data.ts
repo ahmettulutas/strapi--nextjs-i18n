@@ -1,5 +1,5 @@
-import { createTranslation } from "@/i18n";
-import { LocaleType, availableLocales } from "@/i18n/settings";
+import { createTranslation } from "@/app/[lang]/i18n";
+import { LocaleType, availableLocales } from "@/app/[lang]/i18n/settings";
 import { Metadata, ResolvingMetadata } from "next";
 
 export const ogImageSizes = [

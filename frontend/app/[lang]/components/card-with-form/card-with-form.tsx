@@ -1,6 +1,7 @@
+"use client";
 import * as React from "react";
 
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/[lang]/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,22 +9,27 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/app/components/ui/card";
-import { Input } from "@/app/components/ui/input";
-import { Label } from "@/app/components/ui/label";
+} from "@/app/[lang]/components/ui/card";
+import { Input } from "@/app/[lang]/components/ui/input";
+import { Label } from "@/app/[lang]/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/app/components/ui/select";
+} from "@/app/[lang]/components/ui/select";
+import { useTranslation } from "@/app/[lang]/i18n/client";
+import { useParams } from "next/navigation";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 
 export function CardWithForm() {
+  const locale = useParams()?.lang as LocaleType;
+  const { t } = useTranslation(locale, "translation");
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Contact Us</CardTitle>
+        <CardTitle>{t("contactUs")}</CardTitle>
         <CardDescription>Lets talk what you need</CardDescription>
       </CardHeader>
       <CardContent>
@@ -40,10 +46,10 @@ export function CardWithForm() {
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="next">Finance</SelectItem>
-                  <SelectItem value="sveltekit">Api Solutions</SelectItem>
-                  <SelectItem value="astro">BNPL</SelectItem>
-                  <SelectItem value="nuxt">KYC</SelectItem>
+                  <SelectItem value="next">Frontend</SelectItem>
+                  <SelectItem value="sveltekit">Backend</SelectItem>
+                  <SelectItem value="astro">AI</SelectItem>
+                  <SelectItem value="nuxt">Data Science</SelectItem>
                 </SelectContent>
               </Select>
             </div>

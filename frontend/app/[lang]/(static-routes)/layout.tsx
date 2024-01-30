@@ -1,5 +1,5 @@
 import { Manrope } from "next/font/google";
-import { LocaleType } from "@/i18n/settings";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 import { getGlobal } from "../utils/strapi-api-fns";
 import { Navbar } from "../components/layouts/Navbar";
 

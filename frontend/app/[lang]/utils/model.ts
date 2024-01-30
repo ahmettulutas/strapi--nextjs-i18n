@@ -1,4 +1,4 @@
-import { ButtonProps } from "@/app/components/ui/button";
+import { ButtonProps } from "@/app/[lang]/components/ui/button";
 
 type StrapiResponse<T> = {
   data: T;

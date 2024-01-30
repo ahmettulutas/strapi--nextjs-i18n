@@ -1,7 +1,19 @@
 import React from "react";
+import { PaleText } from "./pale-text";
 
-const PageHeader = () => {
-  return <div>todo...</div>;
-};
-
-export default PageHeader;
+export function PageHeader({
+  header,
+  subHeader,
+}: {
+  header: string;
+  subHeader?: string;
+}) {
+  return (
+    <div>
+      <h2>{header}</h2>
+      <PaleText>
+        <p>{subHeader}</p>
+      </PaleText>
+    </div>
+  );
+}

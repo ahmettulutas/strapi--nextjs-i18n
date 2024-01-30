@@ -1,4 +1,4 @@
-import { LocaleType } from "@/i18n/settings";
+import { LocaleType } from "@/app/[lang]/i18n/settings";
 import {
   getAvailableSlugsForBlogs,
   getGlobal,
