@@ -125,7 +125,7 @@ export interface Author {
   };
 }
 
-export interface Category {
+export type Category = {
   data: {
     id: number;
     attributes: {
@@ -133,7 +133,15 @@ export interface Category {
       slug: string;
     };
   };
-}
+};
+
+export type CategoryLink = {
+  id: string;
+  attributes: {
+    name: string;
+    slug: string;
+  };
+};
 
 export interface Blog {
   id: number;

@@ -20,10 +20,12 @@ import { Author } from "./author";
 import { Badge } from "@/app/[lang]/components/ui/badge";
 
 export const BlogPosts = ({ data, lang }: BlogPostProps) => {
+  if (!data) return null;
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 my-20">
-      {data.map((item: Blog) => {
+      {data?.map((item: Blog) => {
         const category = item.attributes?.category?.data?.attributes;
+        const coverImage = item.attributes.coverImage.data;
         return (
           <Link
             href={`/${lang}/posts/${item.attributes.slug}`}
@@ -34,23 +36,18 @@ export const BlogPosts = ({ data, lang }: BlogPostProps) => {
               <CardHeader>
                 <div className="relative aspect-[4/3]">
                   <Image
+                    className="group-hover:scale-105 duration-200 transition-all"
                     alt={
-                      item.attributes.coverImage.data.attributes
-                        .alternativeText ||
-                      item.attributes.coverImage.data.attributes.name
+                      coverImage?.attributes.alternativeText ||
+                      coverImage?.attributes.name
                     }
                     fill
-                    /* width={item.attributes.coverImage.data.attributes.width}
-                height={item.attributes.coverImage.data.attributes.width} */
-                    src={getStrapiMedia(
-                      item.attributes.coverImage.data.attributes.url
-                    )}
+                    src={getStrapiMedia(coverImage?.attributes.url)}
                   />
                 </div>
               </CardHeader>
               <CardContent>
-                <Badge>{category.name}</Badge>{" "}
-                {/* // TODO  Add navigation to category page here */}
+                {category ? <Badge>{category.name}</Badge> : null}
                 <CardTitle className=" leading-normal group-hover:underline">
                   {item.attributes.title}
                 </CardTitle>

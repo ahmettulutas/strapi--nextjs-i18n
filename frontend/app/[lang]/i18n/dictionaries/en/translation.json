@@ -17,19 +17,14 @@
   "signIn": "Sign in",
   "contactUs": "Contact Us",
   "allBlogPosts": "All Blog Posts",
-  "footerHeading": "News in Software | Updates | Guides",
-  "footerDescription": "Subscribe to my blog to learn about new technology and updates. Stay up to date with latest news.",
   "enterYourEmail": "Enter your Email",
   "submit": "Submit",
-  "thoughtsAboutPost": "What are your thoughts about this post?",
-  "signInToShareThoughts": "Please sign in to share your thoughts",
   "incorrectURL": "You have navigated to an incorrect URL",
-  "resume": "Resume",
   "metaData": {
-    "pageTitle": "Aesthetic Page",
-    "pageDescription": "This is Ahmet Ulutaş Blog for frontend development.",
-    "applicationName": "Frontend Developer Blog",
-    "category": "frontend development | software | blog",
+    "pageTitle": "Sanity - Next.js App Router - i18n",
+    "pageDescription": "This project is built using Sanity, PostgreSql, Next.js App Router - i18n. Created by Ahmet Ulutaş.",
+    "applicationName": "Sanity Next.js App Router",
+    "category": "cms | sanity | app router | software | blog",
     "twitterImageAlt": "Twitter Image Alt",
     "ogImageAlt": "OG Image Alt"
   }

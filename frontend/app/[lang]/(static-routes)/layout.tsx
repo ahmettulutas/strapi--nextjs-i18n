@@ -1,18 +1,13 @@
-import { Manrope } from "next/font/google";
 import { LocaleType } from "@/app/[lang]/i18n/settings";
 import { getGlobal } from "../utils/strapi-api-fns";
-import { Navbar } from "../components/layouts/Navbar";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  display: "swap",
-});
+import { Navbar } from "../components/layouts/navbar";
+import Footer from "../components/layouts/footer";
 
 export type SharedPageProps = {
   params: { lang: LocaleType };
 };
 
-type LocaleRouteLayout = SharedPageProps & {
+type StaticLayoutProps = SharedPageProps & {
   children: React.ReactNode;
 };
 
@@ -21,13 +16,27 @@ type LocaleRouteLayout = SharedPageProps & {
 export default async function Layout({
   children,
   params: { lang },
-}: LocaleRouteLayout) {
+}: StaticLayoutProps) {
   const globalData = await getGlobal(lang);
+  const footer = globalData.data.attributes.footer[0];
+  const navbar = globalData.data.attributes.navbar;
   return (
-    <>
-      <Navbar lang={lang} navbarData={globalData.data.attributes.navbar} />
+    <div
+      style={{
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto",
+        minHeight: "100vh",
+      }}
+    >
+      <Navbar lang={lang} navbarData={navbar} />
       {children}
-      <footer>Footer</footer>
-    </>
+      <Footer
+        title={footer.title}
+        description={footer.description}
+        categoryLinks={footer.categories.data}
+        legalLinks={footer.legalLinks}
+        socialLinks={footer.socialLinks}
+      />
+    </div>
   );
 }

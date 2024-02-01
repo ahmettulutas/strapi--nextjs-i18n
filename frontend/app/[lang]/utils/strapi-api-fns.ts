@@ -66,6 +66,7 @@ export async function getBlogPageById(lang: LocaleType, slug: string) {
         fields: ["name"],
         populate: { avatar: { fields: ["url", "width", "height"] } },
       },
+      sections: { populate: "*" },
       localizations: { fields: ["slug", "locale"] },
     },
   };

@@ -1,5 +1,4 @@
 import React from "react";
-import { PaleText } from "./pale-text";
 
 export function PageHeader({
   header,
@@ -9,11 +8,9 @@ export function PageHeader({
   subHeader?: string;
 }) {
   return (
-    <div>
-      <h2>{header}</h2>
-      <PaleText>
-        <p>{subHeader}</p>
-      </PaleText>
+    <div className="my-10 width-full text-center">
+      <h2 className="text-2xl font-semibold text-primary">{header}</h2>
+      <p className="text-md">{subHeader}</p>
     </div>
   );
 }

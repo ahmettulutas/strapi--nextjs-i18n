@@ -7,9 +7,10 @@ import { DynamicSlug, Picture, StrapiLinkProps } from "../../utils/model";
 import { getStrapiMedia } from "../../utils/api-helpers";
 import { useCallback, useState } from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { NavbarToggle } from "./NavbarToggle";
+import { NavbarToggle } from "./navbar-toggle";
 import { LanguageSelector } from "../shared/language-selector";
 import { LocaleType } from "@/app/[lang]/i18n/settings";
+import { Logo } from "../shared/logo";
 
 type NavbarProps = {
   navbarData: {
@@ -43,23 +44,17 @@ export function Navbar({ navbarData, dynamicSlugs, lang }: NavbarProps) {
           <NavbarToggle onClick={() => setOpen((prev) => !prev)} />
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             {getStrapiMedia(navbarData.navLogo.data.attributes.url) ? (
-              <div className="flex items-center">
-                <Image
-                  width={navbarData.navLogo.data.attributes.width}
-                  height={navbarData.navLogo.data.attributes.height}
-                  className="h-8 w-auto max-w-44"
-                  src={getStrapiMedia(navbarData.navLogo.data.attributes.url)}
-                  alt={
-                    navbarData.navLogo.data.attributes.alternativeText || "logo"
-                  }
-                />
-              </div>
+              <Logo
+                width={navbarData.navLogo.data.attributes.width}
+                height={navbarData.navLogo.data.attributes.height}
+                src={getStrapiMedia(navbarData.navLogo.data.attributes.url)}
+              />
             ) : null}
 
-            <div className="hidden sm:block ml-auto">
+            <div className="hidden sm:flex items-center ml-auto">
               <div className="flex space-x-4">{getLinks()}</div>
+              <LanguageSelector dynamicSlugs={dynamicSlugs} />
             </div>
-            <LanguageSelector dynamicSlugs={dynamicSlugs} />
           </div>
         </div>
       </div>
@@ -69,6 +64,9 @@ export function Navbar({ navbarData, dynamicSlugs, lang }: NavbarProps) {
         className={`${open ? "block" : "hidden"} md:hidden`}
       >
         <div className="space-y-1 px-2 pb-3 pt-2">{getLinks()}</div>
+        <div className="px-3 py-2">
+          <LanguageSelector dynamicSlugs={dynamicSlugs} />
+        </div>
       </div>
     </nav>
   );

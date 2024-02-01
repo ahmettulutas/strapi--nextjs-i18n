@@ -26,6 +26,7 @@ import { LocaleType } from "@/app/[lang]/i18n/settings";
 export function CardWithForm() {
   const locale = useParams()?.lang as LocaleType;
   const { t } = useTranslation(locale, "translation");
+
   return (
     <Card className="w-[350px]">
       <CardHeader>

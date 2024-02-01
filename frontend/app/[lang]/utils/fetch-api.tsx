@@ -1,6 +1,5 @@
 import qs from "qs";
 import { getStrapiURL } from "./api-helpers";
-import { notFound } from "next/navigation";
 
 export async function strapiFetchApi(
   path: string,

@@ -46,12 +46,12 @@ export const LanguageSelector = ({
     if (!dynamicSlug) return router.push(`/${locale}`);
     return router.push(`/${locale}/posts/${dynamicSlug}`);
   };
-  console.log(locale);
+
   return (
     <Select
       aria-label="select-language"
-      defaultValue={locale === "" ? "en" : locale}
-      value={locale === undefined ? "en" : locale}
+      defaultValue={!locale ? "en" : locale}
+      value={!locale ? "en" : locale}
       onValueChange={(value) => {
         dynamicLocaleRoutes
           ? handleDynamicNavigation(value)
@@ -59,7 +59,7 @@ export const LanguageSelector = ({
       }}
     >
       <SelectTrigger className="w-auto bg-[#14062C] text-white">
-        <SelectValue placeholder="Language" />
+        <SelectValue placeholder={t("language")} />
       </SelectTrigger>
       <SelectContent className="bg-[#14062C] text-white w-full">
         <SelectGroup>
