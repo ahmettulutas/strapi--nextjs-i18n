@@ -41,12 +41,12 @@ export async function getAllBlogs(lang: LocaleType) {
   const urlParamsObject = {
     locale: lang,
     populate: {
-      coverImage: { populate: "*" },
-      category: { fields: ["name", "slug"] },
+      coverImage: { fields: "*" },
       author: {
         fields: ["name"],
         populate: { avatar: { fields: ["url", "width", "height"] } },
       },
+      category: { fields: ["name", "slug"] },
       related: { populate: "*" },
     },
   };
@@ -60,7 +60,7 @@ export async function getBlogPageById(lang: LocaleType, slug: string) {
     locale: lang,
     filters: { slug },
     populate: {
-      coverImage: { populate: "*" },
+      coverImage: { fields: "*" },
       category: { fields: ["name", "slug"] },
       author: {
         fields: ["name"],

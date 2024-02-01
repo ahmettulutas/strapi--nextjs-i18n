@@ -18,22 +18,17 @@ export default async function Layout({
   params: { lang },
 }: StaticLayoutProps) {
   const globalData = await getGlobal(lang);
-  const footer = globalData.data.attributes.footer[0];
+  const footer = globalData.data.attributes.footer;
   const navbar = globalData.data.attributes.navbar;
+
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateRows: "auto 1fr auto",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="grid grid-rows-layout min-h-screen">
       <Navbar lang={lang} navbarData={navbar} />
       {children}
       <Footer
         title={footer.title}
         description={footer.description}
-        categoryLinks={footer.categories.data}
+        categoryLinks={footer.categories?.data}
         legalLinks={footer.legalLinks}
         socialLinks={footer.socialLinks}
       />

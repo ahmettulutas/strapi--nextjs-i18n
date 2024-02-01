@@ -39,7 +39,8 @@ export const BlogPosts = ({ data, lang }: BlogPostProps) => {
                     className="group-hover:scale-105 duration-200 transition-all"
                     alt={
                       coverImage?.attributes.alternativeText ||
-                      coverImage?.attributes.name
+                      coverImage?.attributes.name ||
+                      ""
                     }
                     fill
                     src={getStrapiMedia(coverImage?.attributes.url)}

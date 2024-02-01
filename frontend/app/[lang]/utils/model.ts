@@ -5,12 +5,27 @@ type StrapiResponse<T> = {
   message: string;
 };
 
-export type ImageAttribute = {
+export type ImageData = {
   url: string;
-  alternativeText?: any;
-  caption?: any;
+  alternativeText?: string | null;
+  name: string | null;
+  caption?: string | null;
   width: number;
   height: number;
+  formats?: {
+    small: Format;
+    thumbnail: Format;
+    // Add more formats if needed
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  previewUrl?: string | null;
+  provider: string;
+  provider_metadata?: any | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type PageData = {
@@ -18,26 +33,8 @@ export type PageData = {
   attributes: PageAttribute;
 };
 
-export type Picture = {
-  data: { id: number; attributes: ImageAttribute };
-};
-export type StrapiLinkProps = {
-  id: number;
-  url: string;
-  newTab: boolean;
-  text: string;
-};
-export type ButtonLinkProps = StrapiLinkProps & {
-  type: ButtonProps["variant"];
-};
-
-export type ContentSection = {
-  id: number;
-  __component: string;
-  title: string;
-  description: string;
-  picture: Picture;
-  buttons: ButtonLinkProps[];
+export type ImageContainer<T extends { id: number; attributes: ImageData }> = {
+  data: T;
 };
 
 export type PageAttribute = {
@@ -68,7 +65,7 @@ export type RootObject = {
   meta: Meta;
 };
 
-export interface Format {
+export type Format = {
   ext: string;
   url: string;
   hash: string;
@@ -78,59 +75,43 @@ export interface Format {
   size: number;
   width: number;
   height: number;
-}
-export interface CoverImage {
-  data: {
-    id: number;
-    attributes: {
-      name: string;
-      alternativeText: string | null;
-      caption: string | null;
-      width: number;
-      height: number;
-      formats: {
-        small: Format;
-        thumbnail: Format;
-      };
-      hash: string;
-      ext: string;
-      mime: string;
-      size: number;
-      url: string;
-      previewUrl: string | null;
-      provider: string;
-      provider_metadata: any | null;
-      createdAt: string;
-      updatedAt: string;
-    };
-  };
-}
+};
 
-export interface Author {
-  data: {
-    id: number;
-    attributes: {
-      name: string;
-      avatar: {
-        data: {
-          id: number;
-          attributes: {
-            url: string;
-            width: number;
-            height: number;
-          };
-        };
-      };
-    };
-  };
-}
+export type StrapiLinkProps = {
+  id: number;
+  url: string;
+  newTab: boolean;
+  text: string;
+};
 
+export type ButtonLinkProps = StrapiLinkProps & {
+  type: ButtonProps["variant"];
+};
+
+export type ContentSection = {
+  id: number;
+  __component: string;
+  title: string;
+  description: string;
+  picture: ImageContainer<{ id: number; attributes: ImageData }>;
+  buttons: ButtonLinkProps[];
+};
 export type Category = {
   data: {
     id: number;
     attributes: {
       name: string;
       slug: string;
+    };
+  };
+};
+
+export type Author = {
+  data: {
+    id: number;
+    attributes: {
+      name: string;
+      avatar: ImageContainer<{ id: number; attributes: ImageData }>;
     };
   };
 };
@@ -152,11 +133,12 @@ export interface Blog {
     updatedAt: string;
     publishedAt: string;
     locale: string;
-    coverImage: CoverImage;
+    coverImage: ImageContainer<{ id: number; attributes: ImageData }>;
     author: Author;
     category: Category;
   };
 }
+
 export type DynamicSlug = {
   id: number;
   attributes: {

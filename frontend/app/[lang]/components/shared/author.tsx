@@ -4,6 +4,7 @@ import { getStrapiMedia } from "../../utils/api-helpers";
 
 export const Author = ({ author }: { author: any }) => {
   // TODO -- add correct prop types
+  if (!author) return null;
   const name = author.attributes.name;
 
   const avatar = author.attributes.avatar;

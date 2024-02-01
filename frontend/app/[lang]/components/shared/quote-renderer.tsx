@@ -10,7 +10,7 @@ export const Quote = ({ data }: QuoteProps) => {
   const { title, body, author } = data;
 
   return (
-    <div className="flex flex-col items-center mx-12 lg:mx-0 py-44">
+    <div className="flex flex-col items-center mx-12 lg:mx-0 py-16">
       {title && <h2 className="my-4">{title}</h2>}
       <div className="relative text-center">
         <svg

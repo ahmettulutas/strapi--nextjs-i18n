@@ -30,10 +30,10 @@ function FooterLink({ url, text }: FooterLink) {
   );
 }
 
-function CategoryLink({ attributes }: CategoryLink) {
+function CategoryLink(link: CategoryLink["attributes"]) {
   return (
     <li className="flex hover:text-white">
-      <Link href={`/blog-posts/${attributes.slug}`}>{attributes.name}</Link>
+      <Link href={`/blog-posts/${link.slug}`}>{link.name}</Link>
     </li>
   );
 }
@@ -76,8 +76,8 @@ export default function Footer({
           <div className="col-span-6 text-center md:text-left md:col-span-3">
             <p className="pb-1 text-lg font-medium">Categories</p>
             <ul>
-              {categoryLinks.map((link: CategoryLink) => (
-                <CategoryLink key={link.id} {...link} />
+              {categoryLinks?.map((link) => (
+                <CategoryLink key={link.id} {...link.attributes} />
               ))}{" "}
               {/* Consider having too many categories. Adjust ui accordingly. */}
             </ul>
@@ -90,7 +90,7 @@ export default function Footer({
             </span>
           </div>
           <div className="flex justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
-            {socialLinks.map((link: FooterLink) => {
+            {socialLinks?.map((link: FooterLink) => {
               return (
                 <a
                   key={link.id}

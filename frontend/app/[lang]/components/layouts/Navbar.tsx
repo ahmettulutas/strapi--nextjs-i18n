@@ -1,9 +1,8 @@
 "use client";
-import Image from "next/image";
 
 import Link from "next/link";
 
-import { DynamicSlug, Picture, StrapiLinkProps } from "../../utils/model";
+import { DynamicSlug, ImageData, StrapiLinkProps } from "../../utils/model";
 import { getStrapiMedia } from "../../utils/api-helpers";
 import { useCallback, useState } from "react";
 import { useSelectedLayoutSegment } from "next/navigation";
@@ -15,7 +14,7 @@ import { Logo } from "../shared/logo";
 type NavbarProps = {
   navbarData: {
     navLinks: Array<StrapiLinkProps>;
-    navLogo: Picture;
+    navLogo: { data: { id: number; attributes: ImageData } };
   };
   lang: LocaleType;
   dynamicSlugs?: Array<DynamicSlug>;

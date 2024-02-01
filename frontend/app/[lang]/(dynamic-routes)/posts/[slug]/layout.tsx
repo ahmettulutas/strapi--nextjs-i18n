@@ -23,12 +23,13 @@ export default async function Layout({
   const globalData = await getGlobal(lang);
   const availableSlugs = await getAvailableSlugsForBlogs(lang, slug);
   const locales = availableSlugs.data[0]?.attributes.localizations;
-  const footer = globalData.data.attributes.footer[0];
+  const footer = globalData.data.attributes.footer;
   const navbar = globalData.data.attributes.navbar;
+
   return (
-    <>
+    <div className="grid grid-rows-layout min-h-screen">
       <Navbar lang={lang} navbarData={navbar} dynamicSlugs={locales?.data} />
-      {children}
+      <>{children}</>
       <Footer
         title={footer.title}
         description={footer.description}
@@ -36,6 +37,6 @@ export default async function Layout({
         legalLinks={footer.legalLinks}
         socialLinks={footer.socialLinks}
       />
-    </>
+    </div>
   );
 }

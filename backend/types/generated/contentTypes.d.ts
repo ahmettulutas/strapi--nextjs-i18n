@@ -974,7 +974,7 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     };
   };
   attributes: {
-    footer: Attribute.Component<'layouts.footer', true> &
+    footer: Attribute.Component<'layouts.footer'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {

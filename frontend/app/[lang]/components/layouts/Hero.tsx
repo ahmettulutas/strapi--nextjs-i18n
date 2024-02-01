@@ -16,13 +16,6 @@ type HeroProps = {
 export function Hero({ title, description, buttonLink }: HeroProps) {
   return (
     <section className="bg-[#14062C] w-full relative overflow-hidden rounded-b-xl">
-      <Image
-        alt="hero-background-image"
-        src={heroBg}
-        width={2591}
-        height={547}
-        className="absolute right-[-70%] translate-y-[-50%] z-40 opacity-10"
-      />
       <section className="px-20 py-7 m-auto flex items-center flex-col text-center mt-20 max-w-4xl">
         <PaleText>
           <h1 className="text-5xl mt-4 mb-6">{title}</h1>

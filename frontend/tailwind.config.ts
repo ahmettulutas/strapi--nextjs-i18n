@@ -19,6 +19,9 @@ const config = {
     },
 
     extend: {
+      gridTemplateRows: {
+        layout: "auto 1fr auto",
+      },
       colors: {
         border: "hsl(var(--border))",
         btnBorder: "rgba(255, 255, 255, 0.04)",

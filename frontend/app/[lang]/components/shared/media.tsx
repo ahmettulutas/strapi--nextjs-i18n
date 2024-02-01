@@ -20,7 +20,7 @@ export default function Media({ data }: { data: MediaProps }) {
   const imgUrl = getStrapiMedia(data.file.data?.attributes.url);
   if (!imgUrl) return null;
   return (
-    <div className="flex items-center justify-center mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 max-w-7xl m-auto relative">
+    <div className="flex items-center justify-center mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] relative">
       <Image
         src={imgUrl || ""}
         alt={data.file.data.attributes.alternativeText || "none provided"}
