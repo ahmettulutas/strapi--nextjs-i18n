@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_links_social_links",
+  "info": {
+    "displayName": "Social Link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "newTab": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "social": {
+      "type": "enumeration",
+      "enum": [
+        "WEBSITE",
+        "TWITTER",
+        "YOUTUBE",
+        "DISCORD"
+      ]
+    }
+  }
+}

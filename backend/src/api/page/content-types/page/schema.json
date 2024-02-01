@@ -48,8 +48,9 @@
           "localized": true
         }
       },
-      "type": "uid",
-      "required": true
+      "type": "string",
+      "required": true,
+      "unique": false
     }
   }
 }

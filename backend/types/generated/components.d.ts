@@ -10,8 +10,14 @@ export interface LayoutsFooter extends Schema.Component {
   attributes: {
     title: Attribute.String;
     description: Attribute.Text & Attribute.Required;
-    socialLinks: Attribute.Component<'links.link', true> & Attribute.Required;
     legalLinks: Attribute.Component<'links.link', true> & Attribute.Required;
+    categories: Attribute.Relation<
+      'layouts.footer',
+      'oneToMany',
+      'api::category.category'
+    >;
+    socialLinks: Attribute.Component<'links.social-link', true> &
+      Attribute.Required;
   };
 }
 
@@ -42,10 +48,10 @@ export interface LayoutsNavbar extends Schema.Component {
   info: {
     displayName: 'Navbar';
     icon: 'cursor';
+    description: '';
   };
   attributes: {
     navLinks: Attribute.Component<'links.link', true> & Attribute.Required;
-    navButton: Attribute.Component<'links.button-links'>;
     navLogo: Attribute.Media & Attribute.Required;
     logoText: Attribute.String &
       Attribute.SetMinMaxLength<{
@@ -87,6 +93,20 @@ export interface LinksLink extends Schema.Component {
   };
 }
 
+export interface LinksSocialLink extends Schema.Component {
+  collectionName: 'components_links_social_links';
+  info: {
+    displayName: 'Social Link';
+    icon: 'link';
+  };
+  attributes: {
+    text: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    newTab: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    social: Attribute.Enumeration<['WEBSITE', 'TWITTER', 'YOUTUBE', 'DISCORD']>;
+  };
+}
+
 export interface MetaMeta extends Schema.Component {
   collectionName: 'components_meta_metas';
   info: {
@@ -96,103 +116,6 @@ export interface MetaMeta extends Schema.Component {
   attributes: {
     metaTitle: Attribute.String & Attribute.Required;
     metaDescription: Attribute.String & Attribute.Required;
-  };
-}
-
-export interface SectionsService extends Schema.Component {
-  collectionName: 'components_sections_service';
-  info: {
-    displayName: 'Service';
-    icon: 'key';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 100;
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 250;
-      }>;
-    serviceLogo: Attribute.Media & Attribute.Required;
-  };
-}
-
-export interface SectionsServices extends Schema.Component {
-  collectionName: 'components_sections_services';
-  info: {
-    displayName: 'Services-Wrapper';
-    icon: 'restaurant';
-    description: '';
-  };
-  attributes: {
-    wrapperImage: Attribute.Media & Attribute.Required;
-    Service: Attribute.Component<'sections.service', true> & Attribute.Required;
-  };
-}
-
-export interface SectionsSolutionWrapper extends Schema.Component {
-  collectionName: 'components_sections_solution_wrappers';
-  info: {
-    displayName: 'Solution-Wrapper';
-    icon: 'handHeart';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 100;
-      }>;
-    description: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 200;
-      }>;
-    btnLink: Attribute.Component<'links.button-links'>;
-    items: Attribute.Component<'sections.solutions', true> & Attribute.Required;
-  };
-}
-
-export interface SectionsSolutions extends Schema.Component {
-  collectionName: 'components_sections_solutions';
-  info: {
-    displayName: 'Solution';
-    icon: 'handHeart';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 4;
-        maxLength: 80;
-      }>;
-    description: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 50;
-        maxLength: 250;
-      }>;
-    category: Attribute.Enumeration<
-      [
-        'account',
-        'additional',
-        'bnpl',
-        'cardIssuing',
-        'openBanking',
-        'payment',
-        'pos'
-      ]
-    > &
-      Attribute.Required;
-    logo: Attribute.Media & Attribute.Required;
   };
 }
 
@@ -280,11 +203,8 @@ declare module '@strapi/types' {
       'layouts.navbar': LayoutsNavbar;
       'links.button-links': LinksButtonLinks;
       'links.link': LinksLink;
+      'links.social-link': LinksSocialLink;
       'meta.meta': MetaMeta;
-      'sections.service': SectionsService;
-      'sections.services': SectionsServices;
-      'sections.solution-wrapper': SectionsSolutionWrapper;
-      'sections.solutions': SectionsSolutions;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

@@ -15,16 +15,21 @@
       "type": "text",
       "required": true
     },
-    "socialLinks": {
+    "legalLinks": {
       "type": "component",
       "repeatable": true,
       "component": "links.link",
       "required": true
     },
-    "legalLinks": {
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "socialLinks": {
       "type": "component",
       "repeatable": true,
-      "component": "links.link",
+      "component": "links.social-link",
       "required": true
     }
   }

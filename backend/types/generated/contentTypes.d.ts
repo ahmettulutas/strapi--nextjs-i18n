@@ -1057,7 +1057,7 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    slug: Attribute.UID &
+    slug: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
