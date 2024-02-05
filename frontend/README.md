@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## The Internalization of Page Contents
 
-## Getting Started
+In page contents such as "home" I have had to use the same slug for each locale. By doing so; I have kept them under static-routes.
 
-First, run the development server:
+## The Internalization of Dynamic Blog Posts
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+For the blog posts, you can use unique slugs for each locale. I have shown you how to fetch the blogpost data with locales included. When you fetch other locales for a blog-post you can adjust the navbar and use related slugs for each blog post.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Be careful
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Moving components or utils folder out of [lang] may cause you bugs when you call notFound() in one of the files they contain.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## The default language
 
-## Learn More
+The default language for this project is English.
 
-To learn more about Next.js, take a look at the following resources:
+## DB - PostgreSql
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The database I have selected for strapi backend is postgresql
