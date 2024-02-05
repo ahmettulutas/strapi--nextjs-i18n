@@ -10,7 +10,7 @@ type DetailProps = {
 
 export default async function BlogDetail({ params }: DetailProps) {
   const blogPost = await getBlogPageById(params.lang, params.slug);
-  if (!blogPost.data[0]) return notFound();
+  if (!blogPost?.data[0]) return notFound();
   return (
     <main>
       <PageHeader header={blogPost.data[0].attributes.title} />
