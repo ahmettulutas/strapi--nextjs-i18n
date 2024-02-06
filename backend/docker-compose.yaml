@@ -29,9 +29,6 @@ services:
     networks:
       - strapi
 
-volumes:
-  strapi-data:
-
 networks:
   strapi:
     name: Strapi

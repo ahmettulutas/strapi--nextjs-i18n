@@ -81,6 +81,9 @@ ssl
 .idea
 nbproject
 public/uploads/*
+*.env
+*.env.production
+
 !public/uploads/.gitkeep
 
 ############################
