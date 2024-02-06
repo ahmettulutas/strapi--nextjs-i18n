@@ -19,7 +19,6 @@ export type SliderData = Array<{
 }>;
 
 export const Slider = ({ data }: { data: SliderData }) => {
-  console.log(data);
   return (
     <div>
       <Carousel

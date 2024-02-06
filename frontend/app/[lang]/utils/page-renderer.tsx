@@ -5,7 +5,6 @@ import { Quote } from "../components/shared/quote-renderer";
 import RichText from "../components/shared/rich-text-renderer";
 
 export const pageRenderer = (section: any, index: number) => {
-  console.log(section.__component);
   switch (section.__component) {
     case "layouts.hero":
       return (
@@ -19,7 +18,7 @@ export const pageRenderer = (section: any, index: number) => {
     case "shared.rich-text":
       return (
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <RichText key={index} data={section} />
+          <RichText key={index} data={{ ...section }} />
         </div>
       );
     case "shared.quote":

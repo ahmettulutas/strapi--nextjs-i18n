@@ -31,7 +31,7 @@ export function CardWithForm() {
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>{t("contactUs")}</CardTitle>
-        <CardDescription>Lets talk what you need</CardDescription>
+        <CardDescription>{t("letsTalk")}</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
